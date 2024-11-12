@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: API de Adopciones de Mascotas
+  version: 1.0.0
+  description: API para gestionar adopciones de mascotas
+
+paths:
+  /api/adoptions:
+    get:
+      summary: Obtiene todas las adopciones
+      tags:
+        - Adoptions
+      responses:
+        '200':
+          description: Lista de todas las adopciones
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  payload:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        owner:
+                          type: string
+                        pet:
+                          type: string
+
+  /api/adoptions/{uid}/{pid}:
+    post:
+      summary: Crea una nueva adopción
+      tags:
+        - Adoptions
+      parameters:
+        - in: path
+          name: uid
+          schema:
+            type: string
+          required: true
+          description: ID del usuario
+        - in: path
+          name: pid
+          schema:
+            type: string
+          required: true
+          description: ID de la mascota
+      responses:
+        '200':
+          description: Adopción exitosa
+        '400':
+          description: Error en la solicitud
+        '404':
+          description: Usuario o mascota no encontrado
