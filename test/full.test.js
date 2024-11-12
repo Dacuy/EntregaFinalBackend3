@@ -32,7 +32,10 @@ describe('Adoptame API Tests', () => {
         });
 
         it('Crear una mascota', async () => {
-            const newPet = { name: 'Firulais', specie: 'Dog', birthDate: '2020-01-01' };
+            const newPet = { 
+                name: 'Firulais',
+                specie: 'Dog', 
+                birthDate: '2020-01-01' };
             const response = await requester.post('/api/pets').send(newPet);
             expect(response.status).to.equal(200);
             expect(response.body.payload).to.have.property('_id');
