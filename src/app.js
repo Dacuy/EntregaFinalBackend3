@@ -31,6 +31,7 @@ app.use(express.static(PUBLIC_DIR));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.listen(PORT,()=>console.log(`Listening on ${PORT}`))
 
 // RUTAS GENERALES
 app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
@@ -41,5 +42,3 @@ app.use('/api/sessions', sessionsRouter);
 app.use('/api/mocks', mocksRouter);
 
 app.use(errorHandler);
-
-export default app;
